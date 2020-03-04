@@ -22,7 +22,7 @@ function Home() {
     dispatch({ type: counterConstants.DECREMENT });
   };
   const handleDispatchChange = () => {
-    dispatch({ type: counterConstants.CHANGE, payload });
+    dispatch({ type: counterConstants.CHANGE, payload: parseInt(payload) });
   };
   const handleDispatchInitialValue = () => {
     dispatch({ type: counterConstants.INITIAL });
@@ -32,8 +32,8 @@ function Home() {
       <TextInput
         value={payload}
         style={styles.textInput}
-        onChangeText={e => setPayload(parseInt(e))}
-        autoCapitalize={false}
+        onChangeText={e => setPayload(e)}
+        autoCapitalize={'none'}
         autoCompleteType={'off'}
         keyboardType={'numeric'}
       />
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#efefef',
     borderWidth: 1,
-    height: 54,
-    borderRadius: 20,
+    height: 50,
+    borderRadius: 4,
     shadowOffset: {
       width: 0,
       height: 0
