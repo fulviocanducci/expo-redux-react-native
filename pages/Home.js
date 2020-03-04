@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { counterConstants } from './stores/reducers/count';
+import { counterConstants } from '../stores/reducers/count';
+import { useNavigation } from '@react-navigation/native';
 
 function ViewButton({ title, onPress, style }) {
   return (
@@ -12,6 +13,7 @@ function ViewButton({ title, onPress, style }) {
 }
 
 function Home() {
+  const navigation = useNavigation();
   const [payload, setPayload] = useState('0');
   const value = useSelector(x => x.counter.value);
   const dispatch = useDispatch();
@@ -26,6 +28,9 @@ function Home() {
   };
   const handleDispatchInitialValue = () => {
     dispatch({ type: counterConstants.INITIAL });
+  };
+  const handleRouteStatus = () => {
+    navigation.navigate('Status');
   };
   return (
     <View style={styles.container}>
@@ -57,6 +62,11 @@ function Home() {
       <ViewButton
         title="Initial Value"
         onPress={handleDispatchInitialValue}
+        style={styles.viewButton}
+      />
+      <ViewButton
+        title="Status Page"
+        onPress={handleRouteStatus}
         style={styles.viewButton}
       />
     </View>
